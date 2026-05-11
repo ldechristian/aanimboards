@@ -13,7 +13,7 @@ export default function Home() {
         OPEN Project (ctrl + o) overwrite current project IF NOT SAVED!!!
       </div>
       <div>
-        SHARE Project (ctrl + l OR OTHER SHORTCUT (if anyone has any idea how to implement this, I am open to suggestions.))
+        SHARE Project (ctrl + l OR OTHER SHORTCUT (if anyone has any idea how to implement this, I am open to suggestions : suggestion [at] hostkit.uk))
       </div>
 
       <div>
