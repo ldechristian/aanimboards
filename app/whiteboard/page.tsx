@@ -9,6 +9,9 @@ import { useState } from "react";
 // elements such as : Character, Scene and more should be dragable and double-clickable to open.
 
 class Vector2 {
+    x: number;
+    y: number;
+
     constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
@@ -16,6 +19,10 @@ class Vector2 {
 }
 
 class Rectangle {
+    position: Vector2;
+    size: Vector2;
+    color: string;
+
     constructor(position: Vector2, size: Vector2, color: string) {
         this.position = position;
         this.size = size;
@@ -27,6 +34,10 @@ class Rectangle {
 }
 
 class Circle {
+    position: Vector2;
+    radius: number;
+    color: string;
+
     constructor(position: Vector2, radius: number, color: string) {
         this.position = position;
         this.radius = radius;
@@ -88,10 +99,12 @@ export default function Whiteboard() {
         }
         onMouseUp={
             (e: any) => {
-                setDifference(new Vector2(
-                    difference.x + (lastPos.x - startPos.x) * 1/scale,
-                    difference.y + (lastPos.y - startPos.y) * 1/scale
-                ));
+                if (lastPos && startPos) {
+                    setDifference(new Vector2(
+                        difference.x + (lastPos.x - startPos.x) * 1/scale,
+                        difference.y + (lastPos.y - startPos.y) * 1/scale
+                    ));
+                }
                 setStartPos(null);
                 setLastPos(null);
             }
@@ -100,10 +113,12 @@ export default function Whiteboard() {
             (e: any) => {
                 const currentPos = new Vector2(e.clientX, e.clientY);
 
-                setDifference(new Vector2(
-                    difference.x + (currentPos.x - startPos.x) * 1/scale,
-                    difference.y + (currentPos.y - startPos.y) * 1/scale
-                ));
+                if (startPos) {
+                    setDifference(new Vector2(
+                        difference.x + (currentPos.x - startPos.x) * 1/scale,
+                        difference.y + (currentPos.y - startPos.y) * 1/scale
+                    ));
+                }
                 setStartPos(currentPos);
                 setLastPos(currentPos);
             }
